@@ -340,3 +340,34 @@ select {
 .btn {
   text-decoration: none !important;
 }
+
+/*  Mobile (max 576px) */
+@media (max-width: 576px) {
+    .hero {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/*  Tablette (max 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/*  Desktop (min 1200px) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        margin: auto;
+    }
+}
