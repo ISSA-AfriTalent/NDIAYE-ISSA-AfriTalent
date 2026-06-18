@@ -1,37 +1,50 @@
-const counters = document.querySelectorAll(".counter");
+// ANNIMATION DES COMPTEURS AU SCROLL
 
+// selectionne tous les elements ayant la classe "counter"
+const counters = document.querySelectorAll(".counter");
+// creation dun observateur qui detecte lorsque lelement devient visible
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+    // verifie si lelement est visible a lecran
     if (entry.isIntersecting) {
-      
+      // element actuellement observe
       const counter = entry.target;
+      // recupere la valeur cible depuis lattribut data-target
       const target = +counter.getAttribute("data-target");
-
+      // valeur de depart du compteur
       let count = 0;
+      // fonction danimation du compteur
       const update = () => {
+        // augmentation progressive
         count += target / 100;
-
+        // continue lanimation tant que la cible nest pas atteinte
         if (count < target) {
           counter.innerText = Math.ceil(count);
+          // demande au navigateur dexecuter la prochaine frame;
           requestAnimationFrame(update);
         } else {
+          // affiche la valeur finale exacte
           counter.innerText = target;
         }
       };
-
+      // lance lanimation
       update();
+      // arrete dobserver lelement apres son animation
       observer.unobserve(counter);
     }
   });
 });
-
+// observe chaque compteur de la page
 counters.forEach(c => observer.observe(c));
+// VALIDATION DU FORMULAIRE DE CONTACT
 
+// recuperation du formulaire
 const form = document.getElementById("contactForm");
-
-form.addEventListener("submit", function(e) {
+// ecoute levenement de soumission
+form.addEventListener("submit", function (e) {
+  // empeche lenvoi automatique du formulaire
   e.preventDefault();
-
+  // variable de controle de variation
   let valid = true;
 
   // Inputs
